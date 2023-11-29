@@ -1,7 +1,7 @@
 import re
 
 class MyString:
-    def __init__(self, value="This is the default value."):
+    def __init__(self, value=""):
         self._value = value
 
     def get_value(self):
@@ -23,6 +23,13 @@ class MyString:
         return self._value.endswith('!')
 
     def count_sentences(self):
-        pass
+        value = self.value
+        for punc in ['!','?']:
+            value = value.replace(punc, '.')
+        
+        sentences = [s for s in value.split('.') if s]
+        
+        return len(sentences)
 
-    new_value = property(get_value, set_value)
+    value = property(get_value, set_value)
+    
